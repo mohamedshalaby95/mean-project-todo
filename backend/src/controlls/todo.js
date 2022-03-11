@@ -1,4 +1,4 @@
-const toDoValidation = require("../validation/todo");
+const toDoValidation = require("../validations/todo");
 const todoModel = require("../models/todo");
 const _ = require("lodash");
 

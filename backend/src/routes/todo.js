@@ -1,6 +1,6 @@
 const router=require('express').Router()
-const todoControll=require('../contolls/todo')
-const auth=require('../middeleware/auth')
+const todoControll=require('../controlls/todo')
+const auth=require('../middelewares/auth')
 
 
 

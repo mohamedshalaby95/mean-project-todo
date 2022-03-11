@@ -2,7 +2,7 @@ const express=require('express')
 require('express-async-errors');
 const app=express()
 const userRouter=require('./src/routes/users')
-const handleError=require('./src/middeleware/handelError')
+const handleError=require('./src/middelewares/handelError')
 const todoRouter=require('./src/routes/todo')
 const authRouter=require('./src/routes/login')
 

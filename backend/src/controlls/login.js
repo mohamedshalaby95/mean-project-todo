@@ -1,4 +1,4 @@
-const authValidation = require("../validation/auth");
+const authValidation = require("../validations/auth");
 const userModel = require("../models/user");
 const _=require('lodash')
 
