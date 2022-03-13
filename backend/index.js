@@ -5,6 +5,8 @@ const userRouter=require('./src/routes/users')
 const handleError=require('./src/middelewares/handelError')
 const todoRouter=require('./src/routes/todo')
 const authRouter=require('./src/routes/login')
+const responseTime=require('response-time')
+
 
 const port=process.env.Port||3000
 
@@ -16,6 +18,7 @@ require('dotenv/config')
 require('./config/connectdb')()
 
 app.use(express.json())
+app.use(responseTime())
 app.use('/user',userRouter)
 app.use('/todo',todoRouter)
 app.use('/login',authRouter)

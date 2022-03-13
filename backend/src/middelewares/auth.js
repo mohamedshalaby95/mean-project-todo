@@ -7,7 +7,7 @@ module.exports=( req,res,next)=>{
         token=req.headers.authorization.split(' ')[1]
         try{
             const decode=  jwt.verify(token,process.env.SECERT_TOKEN);
-            console.log(decode)
+          
             req.user=decode
             next()
         }

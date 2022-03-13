@@ -1,6 +1,17 @@
 const toDoValidation = require("../validations/todo");
+require('dotenv/config');
 const todoModel = require("../models/todo");
 const _ = require("lodash");
+const redis=require('redis');
+// const {promisify}=require('util')
+const redis_port=process.env.redis_port||6379;
+
+const client=redis.createClient({
+  host:`${process.env.Dev_redis_host}`,
+  port:redis_port
+})
+
+
 
 
 async function addToDo(req,res){
@@ -44,13 +55,33 @@ async function updateToDo(req,res){
     async function getToDos(req,res){
        
         let todos=await todoModel.find({user:req.user});
+        await client.connect();
+       await  client.set('todos',JSON.stringify(todos),{
+        EX: 60*10,
+        NX: true
+      });
+       
+
+        await client.disconnect();
+        console.log('from routes')
+
         res.send(todos)
 
     }
     async function getToDo(req,res){
        
         let todo=await todoModel.findById(req.params.id);
-        res.send(todo)
+
+        await client.connect();
+        await  client.set('todo',JSON.stringify(todo),{
+         EX: 10,
+         NX: true
+       });
+        
+ 
+         await client.disconnect();
+         console.log('from routes')
+        res.json(todo)
 
     }
     async function deleteToDo(req,res){
