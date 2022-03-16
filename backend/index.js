@@ -6,16 +6,19 @@ const handleError=require('./src/middelewares/handelError')
 const todoRouter=require('./src/routes/todo')
 const authRouter=require('./src/routes/login')
 const responseTime=require('response-time')
+var cors = require('cors')
 
 
 const port=process.env.Port||3000
 
- 
-
+ app.use(cors())
+//  {origin: 'http://localhost:4200',
+//  optionsSuccessStatus: 200 }
 
 
 require('dotenv/config')
 require('./config/connectdb')()
+
 
 app.use(express.json())
 app.use(responseTime())

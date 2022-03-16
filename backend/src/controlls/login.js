@@ -31,7 +31,7 @@ async function login(req,res){
  const token=user.generatetoken()
  user=_.pick(user,["fristname","lastname"])
  console.log(user)
- res.send({user,token})
+ res.send({...user,token})
 
 
 }
