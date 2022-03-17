@@ -2,6 +2,7 @@ import { Router} from '@angular/router';
 import { authService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {Iuser} from '../../../shared/user.type'
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,33 @@ import {Iuser} from '../../../shared/user.type'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  response:Iuser
+  response:Iuser;
+  loginForm:FormGroup
 
-  constructor(private authService:authService,private router:Router) { }
+  constructor(private authService:authService,private router:Router,private fb:FormBuilder) {
+   this.loginForm=this.fb.group({
+       email:['',[Validators.required,Validators.email,Validators.pattern( /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
+       password:['',[Validators.required,Validators.minLength(5),Validators.pattern( /^[a-zA-Z0-9!@#$%^&*]{6,16}$/)]]
+
+   })
+
+   }
+   get email(){
+   return this.loginForm.get('email')
+   }
+   get password(){
+    return this.loginForm.get('password')
+    }
+
+    goToRegister(){
+      this.router.navigate(['register'])
+    }
 
   ngOnInit(): void {
   }
-  login(){
+  submitForm(){
 
-    this.authService.UserLogin({email:"mohamedshala@gmail.com",password:'123456v'}).subscribe((res)=>{
+    this.authService.UserLogin(this.loginForm.value).subscribe((res)=>{
       if(res !=null){
         (this.response as any)=res;
 

@@ -16,6 +16,10 @@ export class authService {
    UserLogin(userLogin:{email:String,password:String}){
     return this.httpclient.post(`${environment.baseUrl}/login`,userLogin)
   }
+
+  UserRegister(userRegister:{email:String,password:String,firstName:string,lastName:string}){
+    return this.httpclient.post(`${environment.baseUrl}/user`,userRegister)
+  }
   isLogged(){
     return localStorage.getItem('token')!=null
   }

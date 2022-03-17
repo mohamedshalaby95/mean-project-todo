@@ -3,6 +3,7 @@ const userModel = require("../models/user");
 const _ = require("lodash");
 
 async function addUser(req, res, next) {
+  console.log(req.body)
   
   const { error } = userValidation(req.body);
 
@@ -22,11 +23,15 @@ async function addUser(req, res, next) {
   }
 
   user = new userModel(
-    _.pick(req.body, ["fristname", "lastname", "email", "password"])
+    _.pick(req.body, ["firstName", "lastName", "email", "password"])
   );
   user = await user.save();
   
-  res.send(_.pick(user, ["id","fristname","lastname","email"]));
+
+  const token=user.generatetoken()
+  user=_.pick(user,["firstName","lastName"])
+ 
+  res.send({...user,token})
 
 
 }
@@ -54,13 +59,16 @@ async function updateUser(req, res) {
   console.log(req.params.id);
   user = await userModel.findByIdAndUpdate(req.params.id, {
     $set: {
-      fristname: req.body.fristname,
-      lastname: req.body.lastname,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
     },
   });
   user = await user.save();
-  res.send(_.pick(user, ["id"]));
+  const token=user.generatetoken()
+  user=_.pick(user,["firstName","lastName"])
+ 
+  res.send({...user,token})
 }
 module.exports = { addUser, updateUser };
