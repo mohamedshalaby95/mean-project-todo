@@ -53,17 +53,20 @@ async function updateToDo(req,res){
     }
 
     async function getToDos(req,res){
+      
        
         let todos=await todoModel.find({user:req.user});
+      
         await client.connect();
        await  client.set('todos',JSON.stringify(todos),{
-        EX: 60*10,
+        EX: 6000,
+        
         NX: true
       });
        
 
         await client.disconnect();
-        console.log('from routes')
+        // console.log('from routes')
 
         res.send(todos)
 
@@ -81,7 +84,7 @@ async function updateToDo(req,res){
  
          await client.disconnect();
          console.log('from routes')
-        res.json(todo)
+        res.send(todo)
 
     }
     async function deleteToDo(req,res){

@@ -51,7 +51,7 @@ console.log(this.registerForm.value)
 
         localStorage.setItem('token',(this.response as any).token)
         localStorage.setItem('dataUser',(this.response as any).fristname)
-         this.router.navigate([""])
+         this.router.navigate(["todos"])
       }
 
     },

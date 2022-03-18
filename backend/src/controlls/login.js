@@ -16,7 +16,7 @@ async function login(req,res){
     
  let user=await userModel.findOne({email:req.body.email})
  if(!user){
-     res.status(401);
+     res.status(400);
      throw new Error(`the email or password not valid `);
     }
   
@@ -25,12 +25,12 @@ async function login(req,res){
     const password= await bycrpt.compare(req.body.password,user.password)
     console.log(password)
  if(!password){
-    res.status(401);
+    res.status(400);
     throw new Error(`the email or password not valid `);  
  }
  const token=user.generatetoken()
  user=_.pick(user,["firstName","lastName"])
- console.log(user)
+
  res.send({...user,token})
 
 

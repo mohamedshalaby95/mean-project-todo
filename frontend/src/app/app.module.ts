@@ -1,26 +1,36 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+
+import { HeaderComponent } from './components/header/header.component';
+import { TokenInseptorsService } from './todo/inseptors/token-inseptors.service';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+
+    HeaderComponent
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, NgxSmartModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInseptorsService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

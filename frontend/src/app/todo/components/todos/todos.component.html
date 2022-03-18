@@ -1,0 +1,40 @@
+<!-- <div class="home-container">
+  <div class="capition">
+
+
+
+  </div>
+
+
+</div> -->
+
+<div class="home-container">
+
+  <div class="row  caption  align-items-center justify-content-center h-100  ">
+
+
+    <div class="   col-md-3  bg-white h-50 rounded-3">
+    <h3 class="ms-2 mt-2 mb-3"> LIST</h3>
+
+    <ul *ngFor="let todo of toDos" class="menu-list">
+      <li><a>{{todo.name}}</a></li>
+
+    </ul>
+
+   <div class=" create-list-button ">
+     <button (click)="createNewList()" class="button is-primary mt-5 "><i class="fas fa-plus me-3 "></i> {{ "Create list" | uppercase }}</button>
+
+   </div>
+
+
+     </div>
+    <div class="  col-md-5  bg-grey h-50 rounded-3"> nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnn</div>
+  </div>
+</div>
+
+
+
+<ngx-smart-modal #myModal identifier="myModal">
+ jjjjjjjjjjjjjjjjj
+</ngx-smart-modal>
+

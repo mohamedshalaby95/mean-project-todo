@@ -11,7 +11,8 @@ import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   response:Iuser;
-  loginForm:FormGroup
+  loginForm:FormGroup;
+  errorLogin:string
 
   constructor(private authService:authService,private router:Router,private fb:FormBuilder) {
    this.loginForm=this.fb.group({
@@ -42,13 +43,17 @@ export class LoginComponent implements OnInit {
 
 
         localStorage.setItem('token',(this.response as any).token)
-        localStorage.setItem('dataUser',(this.response as any).fristname)
-         this.router.navigate([""])
+        localStorage.setItem('dataUser',(this.response as any).firstName)
+         this.router.navigate(["todos"])
       }
 
     },
     (err)=>{
-      console.log((JSON.stringify(err.error.message) as any))
+     
+      this.loginForm.reset()
+      this.errorLogin=(JSON.stringify(err.error.message) as any)
+
+
     }
     )
   }

@@ -28,6 +28,9 @@
         </span>
       </p>
     </div>
+    <span  class="message-valid" *ngIf="errorLogin">
+      {{errorLogin | uppercase}}
+    </span>
     <div class="field">
       <p class="control button-center">
         <button [disabled]="password?.invalid || email?.invalid" class="button is-success mt-3 is-full" type="submit">
