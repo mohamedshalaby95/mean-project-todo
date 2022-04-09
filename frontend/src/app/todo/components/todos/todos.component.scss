@@ -15,14 +15,15 @@
        background-color: white;
        color:$main-color
      }
-     .caption{
-      //  relative
-     }
-     .create-list-button{
-       position: relative;
-       top:40%;
-       left:10%
 
+   h3{
+     color: black;
+     font-size: 1.5rem;
+     font-weight: 500;
+   }
+     .create-icon{
+       width: 25px;
+       height: 25px;
      }
 
 }

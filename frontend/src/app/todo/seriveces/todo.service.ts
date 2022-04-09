@@ -16,4 +16,18 @@ export class TodoService {
   getToDos(){
     return this.httpClient.get(`${environment.baseUrl}/todo`)
   }
+
+  addToDo(data:any){
+    return this.httpClient.post(`${environment.baseUrl}/todo`,data)
+  }
+  deleteToDo(id:string){
+    return this.httpClient.delete(`${environment.baseUrl}/todo/${id}`)
+  }
+
+  updateToDo(data:any,id:any){
+    return this.httpClient.patch(`${environment.baseUrl}/todo/${id}`,data)
+  }
+  getToDo(id:any){
+    return this.httpClient.get(`${environment.baseUrl}/todo/${id}`)
+  }
 }

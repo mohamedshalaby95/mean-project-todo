@@ -17,7 +17,10 @@ const toDoSchema = new Schema({
     minlength: 3,
   },
   discription: { type: String, required: true, minlength: 10 },
-});
+},
+{ timestamps: true }
+
+);
 const toDoModel = model("todo", toDoSchema);
 
 module.exports = toDoModel;

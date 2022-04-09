@@ -1,7 +1,9 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ItoDo } from 'src/app/shared/todo.type';
 import { TodoService } from '../../seriveces/todo.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-todos',
@@ -10,30 +12,84 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class TodosComponent implements OnInit {
     toDos:[ItoDo]
+    toDo:ItoDo
+    flag:number=0
 
-  constructor(public ngxSmartservice:NgxSmartModalService,private todoService:TodoService) {
+  constructor(private dialog:MatDialog,private todoService:TodoService) {
 
    }
 
   ngOnInit(): void {
 
+    this.getTodos()
+
+
+
+
+
+
+
+}
+
+getTodos(){
   this.todoService.getToDos().subscribe((res)=>{
 
-    if(res)
-    (this.toDos as any)=res;
-    console.log(res)
+    if(res && this.flag===0 ){
+
+      (this.toDos as any)=res;
+      this.dispalyToDoInformation(this.toDos[0])
+      this.flag++
+    }
+    else{
+      (this.toDos as any)=res;
+    }
 
   });
+}
+
+openDialog() {
+  this.dialog.open(DialogComponent, {
+    width:'50%',
+  
+  }).afterClosed().subscribe((val)=>{
+
+     if(val){
+       this.getTodos();
+     }
+  })
+}
+
+deleteToDo(todo:ItoDo){
+const {_id}=todo;
+this.todoService.deleteToDo(_id).subscribe((res)=>{
+ this.getTodos();
+},(err)=>{
+  alert(`something go wrong ${err}`)
+})
 
 }
 
-createNewList(){
-  this.ngxSmartservice.getModal('myModal').open();
-}
+updateToDo(row:ItoDo){
 
-  // this.ngxSmartModalService.getModal('myModal').open()
+  this.dialog.open(DialogComponent, {
+
+     width:'50%',
+     data: row
+    }).afterClosed().subscribe((val)=>{
+      if(val){
+        this.getTodos()
+      }
+   })
+
+  }
+  dispalyToDoInformation(todo:ItoDo){
+           console.log(todo)
+    this.todoService.getToDo(todo._id).subscribe((res)=>{
+    this.toDo=res as any
+    console.log(this.toDo)
+    })
 
 
-
+  }
 
 }

@@ -1,0 +1,36 @@
+.numberOfitems {
+  position: relative;
+  top: -6px;
+  z-index: 2;
+  right: 20px;
+
+  color: white;
+  border-radius: 50%;
+
+}
+
+.numberOfitems span {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+
+  bottom: 12px;
+  background-color: red;
+  border-radius: 50%;
+  right: -30px;
+  text-align: center;
+
+}
+
+.profile {
+  border: 3px bold white;
+}
+
+.active {
+  color: white !important;
+  background-color: #317ECE;
+}
+
+#img-profile {
+  cursor: pointer;
+}

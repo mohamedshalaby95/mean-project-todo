@@ -5,7 +5,7 @@ import { TodosComponent } from './components/todos/todos.component';
 
 const routes: Routes = [
 
-  {path:"todos" ,component:TodosComponent,canActivate:[authGuard]}
+  {path:"todos" ,component:TodosComponent}
 ];
 
 @NgModule({

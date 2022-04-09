@@ -1,0 +1,59 @@
+<div   class="form-container">
+  <div mat-dialog-content class="form-caption">
+    <form  [formGroup]="formToDO"  (ngSubmit)="submitForm()" >
+
+     <div class="field">
+       <p class="control has-icons-left has-icons-right">
+         <input  class="input is-info" type="text" placeholder="Name" formControlName="name">
+
+         <span *ngIf="name?.valid "class="icon is-small is-right ">
+           <i class="fas fa-check "></i>
+         </span>
+
+        <span class="message-valid"  *ngIf="name?.invalid &&name?.touched">
+             This name not valid
+           </span>
+
+       </p>
+     </div>
+
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input class="input is-info" type="text" placeholder="Title" formControlName="title">
+
+        <span *ngIf="title?.valid "class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+        <span  class="message-valid" *ngIf="title?.invalid && title?.touched">
+          This not valid title
+        </span>
+      </p>
+    </div>
+
+    <div class="field is-info">
+      <p class="control has-icons-left has-icons-right">
+
+
+        <textarea class="textarea is-info " placeholder="discription" formControlName="discription"></textarea>
+        <span *ngIf="discription?.valid "class="icon is-small is-right">
+         <i class="fas fa-check"></i>
+       </span>
+        <span  class="message-valid" *ngIf="discription?.invalid && discription?.touched">
+          This not valid desciption
+        </span>
+      </p>
+    </div>
+
+
+    <div mat-dialog-actions [align]="'end'">
+
+       <button type="button" mat-raised-button mat-dialog-close class="btn btn-danger" (click)="close()">Close</button>
+      <button style="margin-left:8px" mat-raised-button class="btn btn-primary" [disabled]=" formToDO?.untouched||name?.invalid || discription?.invalid  "  >{{actionBtn}}</button>
+    </div>
+
+    </form>
+
+  </div>
+ </div>
+
+
