@@ -9,7 +9,7 @@ const responseTime=require('response-time')
 var cors = require('cors')
 
 
-const port=process.env.Port||3000
+const port=process.env.PORT||3000
 
  app.use(cors())
 //  {origin: 'http://localhost:4200',
