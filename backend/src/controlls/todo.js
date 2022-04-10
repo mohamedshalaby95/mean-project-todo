@@ -45,7 +45,7 @@ async function addToDo(req, res) {
     user: req.user,
   });
   todo = await todo.save();
-  todo = _.pick(todo, ["name", "description", "_id", "title"]);
+  // todo = _.pick(todo, ["name", "description", "_id", "title"]);
 
   res.send(_.pick(todo, ["_id"]));
 
@@ -54,13 +54,14 @@ async function addToDo(req, res) {
 
   if (dataCashe) {
     let datas = JSON.parse(dataCashe);
+    datas.push(todo)
 
-    let newCash = [{ ...datas }, todo];
+    // let newCash = [{ ...datas,todo }];
     await client.flushAll();
 
     await client.set(
       "todos",
-      JSON.stringify(newCash),
+      JSON.stringify(datas),
       {
         EX: 1000,
 

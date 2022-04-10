@@ -23,11 +23,12 @@ const client = redis.createClient({
 
 async function casheToDos(req, res, next) {
   await client.connect();
-
+  
   const dataCashe = await client.get("todos");
-
+  
   if (dataCashe) {
     let datas = JSON.parse(dataCashe);
+    
     res.send(datas);
     await client.disconnect();
     return;
