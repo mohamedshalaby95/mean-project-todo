@@ -8,6 +8,19 @@ const client = redis.createClient({
   port: redis_port,
 });
 
+// let client
+// if(process.env.Dev_redis_host){
+
+//   const redis_port = process.env.Dev_redis_host|| 6379;
+  
+//    client = redis.createClient({
+//     host: `${process.env.Dev_redis_host}`,
+//     port: redis_port,
+//   });
+// }else{
+//    client = redis.createClient()
+// }
+
 async function casheToDos(req, res, next) {
   await client.connect();
 

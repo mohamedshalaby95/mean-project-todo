@@ -12,8 +12,12 @@ var cors = require('cors')
 const port=process.env.PORT||3000
 
  app.use(cors())
-//  {origin: 'http://localhost:4200',
-//  optionsSuccessStatus: 200 }
+//  app.use(cors({
+//     origin: 'https://todolistahamedsami.herokuapp.com',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+// }))
+
 
 
 require('dotenv/config')

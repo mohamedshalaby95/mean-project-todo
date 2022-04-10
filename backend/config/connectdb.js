@@ -5,7 +5,7 @@ module.exports=()=>{
     
    
 
- if(process.env.NODE_ENV==='Production'){
+ if(`${process.env.NODE_ENV}`==='Production'){
 
     mongoose.connect(`${process.env.PROD_DB}`,{  useNewUrlParser: true,
         useUnifiedTopology: true,

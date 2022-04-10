@@ -10,6 +10,26 @@ const client = redis.createClient({
   host: `${process.env.Dev_redis_host}`,
   port: redis_port,
 });
+//  let client
+// if(process.env.Dev_redis_host){
+
+//   const redis_port = process.env.Dev_redis_host|| 6379;
+  
+//    client = redis.createClient({
+//     host: `${process.env.Dev_redis_host}`,
+//     port: redis_port,
+//   });
+// }else{
+//    client = redis.createClient()
+// }
+
+// let redisClient
+// if(process.env.Dev_redis_host){
+//     let redisURL = url.parse(process.env.REDISCLOUD_URL);
+//     redisClient = redis.createClient(redisURL)
+// } else {
+//     redisClient = redis.createClient()
+// }
 
 async function addToDo(req, res) {
   const { error } = toDoValidation(req.body);

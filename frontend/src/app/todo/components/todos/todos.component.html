@@ -23,31 +23,31 @@
 
       </ul>
 
-      <div class=" text-center mt-5 mb-5" *ngIf="toDos.length<=0">
+      <div class=" text-center mt-5 mb-5" *ngIf="toDos ? toDos.length<=0 : ''">
         Your to task is empty <br>
         create to task
       </div>
 
     </div>
     <div class="  col-md-5  bg-grey h-50 rounded-3  ">
-      <div *ngIf="toDos.length>0" class="d-flex align-items-center h-100 justify-content-center">
+      <div *ngIf="toDos?.length" class="d-flex align-items-center h-100 justify-content-center">
         <div class="card text-center w-50 ">
           <div class="card-header">
             Featured
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{toDo.title}}</h5>
-            <p class="card-text">{{toDo.discription}}</p>
+            <h5 class="card-title">{{toDo?.title}}</h5>
+            <p class="card-text">{{toDo?.discription}}</p>
 
           </div>
           <div class="card-footer text-muted">
-          {{toDo.updatedAt}}
+          {{toDo?.updatedAt}}
           </div>
         </div>
 
       </div>
 
-      <div class=" text-center mt-5 mb-5" *ngIf="toDos.length<=0">
+      <div class=" text-center mt-5 mb-5" *ngIf="toDos ? toDos.length<=0 : ''">
         Your to task is empty <br>
         create to task
       </div>
