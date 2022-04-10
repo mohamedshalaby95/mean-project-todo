@@ -3,23 +3,29 @@ const toDoValidation = require("../validations/todo");
 const redis_port = process.env.redis_port || 6379;
 require("dotenv/config");
 
-const client = redis.createClient({
+
+let client;
+if (process.env.REDIS_URL) {
+ 
+ client = redis.createClient({
+  url: process.env.REDIS_URL,
+  socket: {
+    tls: true,
+    rejectUnauthorized: false
+  }
+});
+}
+else{
+
+
+const redis_port = process.env.redis_port || 6379;
+
+ client = redis.createClient({
   host: `${process.env.Dev_redis_host}`,
   port: redis_port,
 });
+}
 
-// let client
-// if(process.env.Dev_redis_host){
-
-//   const redis_port = process.env.Dev_redis_host|| 6379;
-  
-//    client = redis.createClient({
-//     host: `${process.env.Dev_redis_host}`,
-//     port: redis_port,
-//   });
-// }else{
-//    client = redis.createClient()
-// }
 
 async function casheToDos(req, res, next) {
   await client.connect();

@@ -2,34 +2,32 @@ const toDoValidation = require("../validations/todo");
 require("dotenv/config");
 const todoModel = require("../models/todo");
 const _ = require("lodash");
+
 const redis = require("redis");
-// const {promisify}=require('util')
+
+
+
+let client;
+if (process.env.REDIS_URL) {
+ 
+ client = redis.createClient({
+  url: process.env.REDIS_URL,
+  socket: {
+    tls: true,
+    rejectUnauthorized: false
+  }
+});
+}
+else{
+
+
 const redis_port = process.env.redis_port || 6379;
 
-const client = redis.createClient({
+ client = redis.createClient({
   host: `${process.env.Dev_redis_host}`,
   port: redis_port,
 });
-//  let client
-// if(process.env.Dev_redis_host){
-
-//   const redis_port = process.env.Dev_redis_host|| 6379;
-  
-//    client = redis.createClient({
-//     host: `${process.env.Dev_redis_host}`,
-//     port: redis_port,
-//   });
-// }else{
-//    client = redis.createClient()
-// }
-
-// let redisClient
-// if(process.env.Dev_redis_host){
-//     let redisURL = url.parse(process.env.REDISCLOUD_URL);
-//     redisClient = redis.createClient(redisURL)
-// } else {
-//     redisClient = redis.createClient()
-// }
+}
 
 async function addToDo(req, res) {
   const { error } = toDoValidation(req.body);
