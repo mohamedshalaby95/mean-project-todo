@@ -50,7 +50,7 @@ getTodos(){
 openDialog() {
   this.dialog.open(DialogComponent, {
     width:'50%',
-  
+
   }).afterClosed().subscribe((val)=>{
 
      if(val){
@@ -83,11 +83,14 @@ updateToDo(row:ItoDo){
 
   }
   dispalyToDoInformation(todo:ItoDo){
-           console.log(todo)
-    this.todoService.getToDo(todo._id).subscribe((res)=>{
-    this.toDo=res as any
-    console.log(this.toDo)
-    })
+    if(todo){
+    
+this.todoService.getToDo(todo._id).subscribe((res)=>{
+this.toDo=res as any
+
+})
+
+    }
 
 
   }
