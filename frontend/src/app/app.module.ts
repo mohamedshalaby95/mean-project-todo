@@ -10,6 +10,7 @@ import { TokenInseptorsService } from './todo/inseptors/token-inseptors.service'
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -17,14 +18,15 @@ import {MatDialogModule} from '@angular/material/dialog';
   declarations: [
     AppComponent,
 
-    HeaderComponent
+    HeaderComponent,
+     HomeComponent
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatDialogModule,
+    // MatDialogModule,
     HttpClientModule, NgxSmartModalModule.forRoot(), BrowserAnimationsModule
   ],
   providers: [
