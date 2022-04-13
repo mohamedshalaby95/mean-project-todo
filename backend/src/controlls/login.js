@@ -23,7 +23,7 @@ async function login(req,res){
    
     
     const password= await bycrpt.compare(req.body.password,user.password)
-    console.log(password)
+   
  if(!password){
     res.status(400);
     throw new Error(`the email or password not valid `);  

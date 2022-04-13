@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ItoDo } from 'src/app/shared/todo.type';
 import { TodoService } from '../../seriveces/todo.service';
 
@@ -10,26 +10,32 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss'],
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit,OnChanges {
   toDos: [ItoDo];
   toDo: ItoDo;
   flag: number = 0;
+
 
   constructor(private dialog: MatDialog, private todoService: TodoService) {}
 
   ngOnInit(): void {
     this.getTodos();
-  }
 
+
+  }
+ngOnChanges(): void {
+
+  this.dispalyToDoInformation(this.toDos[0])
+
+}
   getTodos() {
+
     this.todoService.getToDos().subscribe((res) => {
-      if (res && this.flag === 0) {
-        (this.toDos as any) = res;
+      (this.toDos as any) = res;
+
+
         this.dispalyToDoInformation(this.toDos[0]);
-        this.flag++;
-      } else {
-        (this.toDos as any) = res;
-      }
+
     });
   }
 

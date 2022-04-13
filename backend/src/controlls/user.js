@@ -3,7 +3,7 @@ const userModel = require("../models/user");
 const _ = require("lodash");
 
 async function addUser(req, res, next) {
-  console.log(req.body)
+ 
   
   const { error } = userValidation(req.body);
 
@@ -56,7 +56,7 @@ async function updateUser(req, res) {
   
   }
 
-  console.log(req.params.id);
+
   user = await userModel.findByIdAndUpdate(req.params.id, {
     $set: {
       firstName: req.body.firstName,
