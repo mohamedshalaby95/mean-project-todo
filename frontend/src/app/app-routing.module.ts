@@ -1,7 +1,7 @@
-import { authGuard } from './auth/guards/auth.guard';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodosComponent } from './todo/components/todos/todos.component';
+
 import { HomeComponent } from './components/home/home.component';
 
 

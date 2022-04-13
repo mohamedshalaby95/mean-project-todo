@@ -3,7 +3,7 @@
     <form  [formGroup]="formToDO"  (ngSubmit)="submitForm()" >
 
      <div class="field">
-       <p class="control has-icons-left has-icons-right">
+       <p class="control  has-icons-right">
          <input  class="input is-info" type="text" placeholder="Name" formControlName="name">
 
          <span *ngIf="name?.valid "class="icon is-small is-right ">
@@ -18,7 +18,7 @@
      </div>
 
     <div class="field">
-      <p class="control has-icons-left has-icons-right">
+      <p class="control  has-icons-right">
         <input class="input is-info" type="text" placeholder="Title" formControlName="title">
 
         <span *ngIf="title?.valid "class="icon is-small is-right">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="field is-info">
-      <p class="control has-icons-left has-icons-right">
+      <p class="control  has-icons-right">
 
 
         <textarea class="textarea is-info " placeholder="discription" formControlName="discription"></textarea>
